@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="usrid">User id:</label>
                 <input type="text" class="userid" id="uid" placeholder="Enter user ID" name="uid" required>
-              </div>
+              </div> 
               <div class="form-group">
                 <label for="uname">Username:</label>
                 <input type="text" class="username" id="uname" placeholder="Enter username" name="uname" required>
@@ -56,7 +56,7 @@
                   </div>
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" >Male
+                      <input type="radio" class="form-check-input" id="radio1" >Male
                     </label>
                   </div>
               </div>
@@ -64,7 +64,7 @@
                 <div class="form-check-inline">
                     <label for="Language">Language:&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <label class="form-check-label" for="checkbox">
-                      <input type="checkbox" class="form-check-input" id="checkbox" name="optcheckbox" >English
+                      <input type="checkbox" class="form-check-input" id="checkbox1" name="optcheckbox" >English
                     </label>
                   </div>
                   <div class="form-check-inline">
@@ -73,17 +73,18 @@
                     </label>
                   </div>
               </div>
-              <div class="form-group">
+               <div class="form-group">
                 <label for="address">Address:</label>
                 <input type="address" class="address" id="address" placeholder="Enter your Address" name="address" >
               </div>
               <div class="form-group">
                 <label for="About">About:</label>
                 <input type="text" class="about" id="about" placeholder="About" name="about">
-              </div>
-          <button type="submit" class="btn btn-primary" onclick="onSubmit()">Submit</button>
-          <h1 id="output1"></h1>
+              </div> 
+          <button type="submit" class="btn btn-primary" onclick="return onSubmit()">Submit</button>
+          
         </form>
+        <h1 id="output1"></h1>
       </div>
 
     <!-- Optional JavaScript -->
@@ -93,18 +94,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
       function onSubmit(){
+        var male = document.getElementById('radio1').checked;
+        var female = document.getElementById('radio2').checked;
+        var english = document.getElementById('checkbox1').checked;
+        var urdu = document.getElementById('checkbox2').checked;
           var userId = document.getElementById('uid').value;
-          var userPassword = document.getElementById('password').value;
+          var userPassword = document.getElementById('pwd').value;
           var output = "";
           if(userId.length<5 || userId.length>12){
-      output = output + "<li>user Id length shoud not be less them 5 or more then 12 characters</li>"
+      output = output + "<li>user Id length shoud not be less them 5 or more then 12 characters</li>";
       document.getElementById("output1").innerHTML = output;
+      return false;
           }
           if(userPassword.length<7 || userPassword.length>12){
-      output = output + "<li>user Password length shoud not be less them 7 or more then 12 characters</li>"
+      output = output + "<li>user Password length shoud not be less them 7 or more then 12 characters</li>";
       document.getElementById("output1").innerHTML = output;
+      return false;
           }
-          
+          if(male == "" && female == ""){
+            output = output + "<li> Check Atleast one gender checkox </li>";
+            document.getElementById("output1").innerHTML = output;
+      return false;
+          }
+          if(english == "" && urdu == ""){
+            output = output + "<li> Check Atleast one Language checkox </li>";
+            document.getElementById("output1").innerHTML = output;
+      return false;
+          }
       
       }
       </script>
